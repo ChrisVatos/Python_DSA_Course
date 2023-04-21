@@ -31,24 +31,9 @@ class LinkedList:
     def find_middle_node(self):
         slow = self.head
         fast = self.head
-
-        ## Check for two nodes in list
-        if self.head.next == self.tail:
-            return self.tail
-        
-        while fast.next is not None:
+        while fast is not None and fast.next is not None:
             slow = slow.next
             fast = fast.next.next
-
-            # Odd List
-            if fast == self.tail:
-                break
-
-            # Even List
-            if fast.next.next is None:
-                slow = slow.next
-                fast = fast.next
-    
         return slow
 
 my_linked_list = LinkedList(1)
