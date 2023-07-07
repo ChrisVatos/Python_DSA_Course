@@ -27,25 +27,37 @@ class LinkedList:
             self.tail = new_node
         self.length += 1
 
-    # WRITE BUBBLE_SORT METHOD HERE #
-    #                               #
-    #                               #
-    #                               #
-    #                               #
-    #################################
-    def bubble_sort(self):
+    # WRITE SELECTION_SORT METHOD HERE #
+    #                                  #
+    #                                  #
+    #                                  #
+    #                                  #
+    ####################################
+    def selection_sort(self):
+
         if self.length <= 1:
             return self.head
+         
+        starter_node = self.head
         for i in range(self.length - 1, 0, -1):
-            tmp_node = self.head
-            for j in range(i):
-                if tmp_node.value > tmp_node.next.value:
-                    tmp_value = tmp_node.value
-                    tmp_node.value = tmp_node.next.value
-                    tmp_node.next.value = tmp_value
-                tmp_node = tmp_node.next
+            min_value = starter_node.value
+            running_tmp = starter_node.next
+            while running_tmp:
+                if running_tmp.value < min_value:
+                    min_value = running_tmp.value
+                    node_to_swap = running_tmp
+                running_tmp = running_tmp.next
+            if min_value != starter_node.value:
+                tmp_value = starter_node.value
+                starter_node.value = node_to_swap.value
+                node_to_swap.value = tmp_value
+            starter_node = starter_node.next
         return self.head
-                
+
+
+
+
+
 
 
 
@@ -59,7 +71,7 @@ my_linked_list.append(3)
 print("Linked List Before Sort:")
 my_linked_list.print_list()
 
-my_linked_list.bubble_sort()
+my_linked_list.selection_sort()
 
 print("\nSorted Linked List:")
 my_linked_list.print_list()
